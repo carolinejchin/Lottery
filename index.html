@@ -1,0 +1,107 @@
+<html>
+    <script src="lottery.js"></script>
+    
+    <head>
+        <title>Lottery</title>
+    </head> 
+    
+    <body>
+        <h1> Lottery </h1>
+        <script language = "javascript">
+            var rand = [];
+            while(rand.length < 5) {
+                var r = Math.floor(Math.random() * 48) + 1;
+                if(rand.indexOf(r) === -1) rand.push(r);
+            }
+            console.log(rand);
+            
+            var lucky = Math.floor(Math.random() * 18) + 1;
+            
+            document.write("Random Pick: ");
+            for (i = 0; i < rand.length; i++)
+                document.writeln(rand[i] + " " );
+                
+            document.writeln("lucky " + lucky);
+            
+            document.write("<br>");
+            rand.sort(function(a, b){return a-b});
+            
+            document.write("Pick Sorted: ");
+            for (i = 0; i < rand.length; i++)
+                document.writeln(rand[i] + " ");
+            
+            document.writeln("lucky " + lucky);
+            document.write("<br>");
+                
+            var pick = prompt("Enter Winning Numbers").split(" ");
+            pick.sort(function(a, b){return a-b});
+            
+            var lucky_pick = prompt("Enter Lucky Ball Number");
+            
+            document.write("Winning number sorted: ");
+            for (i = 0; i < pick.length; i++)
+                document.writeln(pick[i] + " ");
+                
+            document.writeln("lucky " + lucky_pick);
+            
+            //determines how many numbers match 
+            var num_match = 0;
+            for (i = 0; i < pick.length; i++) {
+                for (j = 0; j < rand.length; j++) {
+                    if (pick[i] == rand[j]) {
+                        num_match++;
+                    }
+                }
+            }
+            
+            document.write("<br>");
+            document.write("Number Matching: " + num_match);
+            document.write("<br>");
+            
+            var lucky_match;
+            if (lucky == lucky_pick) {
+                document.write("Lucky ball matches");
+                lucky_match = true;
+            }
+            else {
+                document.write("Lucky ball does not match");
+                lucky_match = false;
+            }
+            
+            document.write("<br>");
+            document.write("Your winnings: ");
+            if (lucky_match == true && num_match == 5) {
+                document.write("$7,000 a WEEK for LIFE");
+            }  
+            else if(num_match == 5) {
+                document.write("$25,000 a YEAR for LIFE");
+            }  
+            else if(num_match == 4 && lucky_match == true) {
+                document.write("$5,000");
+            }
+            else if(num_match == 4) {
+                document.write("$200");
+            }
+            else if(num_match == 3 && lucky_match == true) {
+                document.write("$150");
+            }
+            else if(num_match == 3) {
+                document.write("$20");
+            }
+            else if(num_match == 2 && lucky_match == true) {
+                document.write("$25");
+            }
+            else if(num_match == 2) {
+                document.write("$3");
+            }
+            else if(num_match == 1 && lucky_match == true) {
+                document.write("$6");
+            }
+            else if (num_match == 0 && lucky_match == true) {
+                document.write("$4");
+            }
+                
+        </script>
+    </body>
+        
+</html>
